@@ -1,0 +1,85 @@
+/* styles.css */
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+  --cell-size: 60px; /* Size of each cell (initial value, will be overwritten in JS) */
+  --gap-size: 10px; /* Gap between cells (initial value, will be overwritten in JS) */
+  --board-padding: 10px; /* Padding around the board */
+  --hover-indicator-color: red; /* Color of the hover indicator */
+  --cell-color: #4a4a4a; /* Inner cell background */
+  --cell-border-color: #333; /* Border color of cells */
+  --board-bg-color: #8d5524; /* Background color of the board */
+  --board-border-radius: 10px; /* Board border radius */
+  --text-color: white; /* Text color */
+  --body-bg-color: #2c2c54; /* Background color of the body */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--body-bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+h1 {
+  margin: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+#game-container {
+  position: relative;
+}
+
+/* Hover-indicator transition for smooth fading */
+#hover-indicator {
+    position: absolute;
+    top: calc(-1 * var(--cell-size) - var(--gap-size));
+    left: 0;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    background-color: var(--hover-indicator-color);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0; /* Start with invisible */
+    transition: left 0.1s ease, opacity 0.3s ease; /* Smooth movement and fade-in/out */
+  }
+  
+
+/* Board Styles */
+#board {
+  display: grid;
+  gap: var(--gap-size);
+  background-color: var(--board-bg-color);
+  padding: var(--board-padding);
+  border-radius: var(--board-border-radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: var(--cell-color);
+  border-radius: 50%;
+  border: 5px solid var(--cell-border-color);
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cell + .cell {
+  margin-top: var(--gap-size);
+}
+
+.column:hover .cell {
+  cursor: pointer;
+}
