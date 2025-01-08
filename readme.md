@@ -3,6 +3,8 @@
 A simple and interactive Connect 4 game built with **HTML**, **CSS**, and **JavaScript**. 🎮  
 This project aims to strengthen my skills in vanilla web development by building a fun and challenging game!
 
+Live Demo: [Connect 4 Clone](https://shubhamrawat090.github.io/ConnectFour/)
+
 ---
 
 ## 🕹️ Features
@@ -33,7 +35,7 @@ This project aims to strengthen my skills in vanilla web development by building
 
 ## 📸 Screenshot
 
-*(Include a screenshot of your game here once completed.)*
+_(Include a screenshot of your game here once completed.)_
 
 ---
 
@@ -42,3 +44,4 @@ This project aims to strengthen my skills in vanilla web development by building
 1. Clone this repository:
    ```bash
    git clone https://github.com/shubhamrawat090/ConnectFour.git
+   ```
