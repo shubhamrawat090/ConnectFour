@@ -36,13 +36,13 @@ Live Demo: [Connect 4 Clone](https://shubhamrawat090.github.io/ConnectFour/)
 ## 📸 Screenshot
 
 **1. In-Game View**  
-![In-Game Screenshot](screenshots/InGame.png)
+<img src="screenshots/InGame.png" alt="In-Game Screenshot" width="200" height="200">
 
 **2. Player 1's Turn**  
-![Player 1 Turn Screenshot](screenshots/Player1Turn.png)
+<img src="screenshots/Player1Turn.png" alt="Player 1 Turn Screenshot" width="200" height="200">
 
 **3. Winner Screen**  
-![Winner Screen Screenshot](screenshots/WinnerScreen.png)
+<img src="screenshots/WinnerScreen.png" alt="Winner Screen Screenshot" width="200" height="200">
 
 ---
 
