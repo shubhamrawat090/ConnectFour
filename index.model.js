@@ -5,6 +5,7 @@ class StaticDataModelClass {
     this.GAP_SIZE = 10;
     this.ROWS = 6;
     this.COLUMNS = 7;
+    this.ANIMATION_DURATION = 500;
   }
 }
 

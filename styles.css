@@ -19,6 +19,7 @@
   --board-border-radius: 10px; /* Board border radius */
   --text-color: white; /* Text color */
   --body-bg-color: #2c2c54; /* Background color of the body */
+  --animation-duration: 500ms; /* Animation duration, dynamically set via JS */
 }
 
 body {
@@ -131,5 +132,5 @@ h1 {
   border-radius: 50%;
   z-index: 10;
   pointer-events: none; /* Prevent interaction */
-  transition: top 0.5s ease-out;
+  transition: top var(--animation-duration) ease-out;
 }

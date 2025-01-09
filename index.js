@@ -13,7 +13,8 @@ const winnerModal = document.getElementById("winner-modal"); // Modal element
 const winnerMessage = document.getElementById("winner-message"); // Winner message in modal
 const restartButton = document.getElementById("restart-button"); // Restart button in modal
 
-const { CELL_SIZE, GAP_SIZE, ROWS, COLUMNS } = StaticDataModel;
+const { CELL_SIZE, GAP_SIZE, ROWS, COLUMNS, ANIMATION_DURATION } =
+  StaticDataModel;
 
 let isAnimating = false; // Track animation state
 
@@ -22,6 +23,10 @@ function createBoard() {
   // Set the CSS variables dynamically
   document.documentElement.style.setProperty("--cell-size", `${CELL_SIZE}px`);
   document.documentElement.style.setProperty("--gap-size", `${GAP_SIZE}px`);
+  document.documentElement.style.setProperty(
+    "--animation-duration",
+    `${ANIMATION_DURATION}ms`
+  );
 
   // Set board grid
   board.style.gridTemplateColumns = `repeat(${COLUMNS}, ${CELL_SIZE}px)`;
@@ -147,7 +152,7 @@ function handleColumnClick(colIndex) {
     }
 
     isAnimating = false; // Reset animation flag
-  }, 500); // Match the animation duration
+  }, ANIMATION_DURATION); // Match the animation duration
 }
 
 // Show winner with confetti and modal
