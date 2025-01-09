@@ -28,6 +28,15 @@ class GameBoardLogic {
     return false; // Column is full
   }
 
+  getFirstEmptyRow(colIndex) {
+    for (let row = this.rows - 1; row >= 0; row--) {
+      if (this.board[row][colIndex].getState() === "empty") {
+        return row;
+      }
+    }
+    return -1; // Column is full
+  }
+
   // Reset the entire board
   resetBoard() {
     for (let row = 0; row < this.rows; row++) {
@@ -96,6 +105,9 @@ class GameBoardLogic {
 
     return null; // No winner
   }
+
+  getLeftStartingPointOfCoin = (gapSize, colIndex, cellSize) =>
+    gapSize + colIndex * (gapSize + cellSize);
 }
 
 export default GameBoardLogic;

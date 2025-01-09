@@ -122,3 +122,14 @@ h1 {
 .modal-content button:hover {
   background-color: #0056b3;
 }
+
+/* Add this CSS for the dropping animation */
+.animated-disc {
+  position: absolute;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none; /* Prevent interaction */
+  transition: top 0.5s ease-out;
+}

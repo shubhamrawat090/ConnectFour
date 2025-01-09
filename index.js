@@ -15,6 +15,8 @@ const restartButton = document.getElementById("restart-button"); // Restart butt
 
 const { CELL_SIZE, GAP_SIZE, ROWS, COLUMNS } = StaticDataModel;
 
+let isAnimating = false; // Track animation state
+
 // Function to create the board
 function createBoard() {
   // Set the CSS variables dynamically
@@ -53,7 +55,11 @@ function attachEvents() {
 
     // Hover effect
     column.addEventListener("mouseover", () => {
-      const leftTranslate = GAP_SIZE + colIndex * (GAP_SIZE + CELL_SIZE);
+      const leftTranslate = gameBoard.getLeftStartingPointOfCoin(
+        GAP_SIZE,
+        colIndex,
+        CELL_SIZE
+      );
       hoverIndicator.style.left = `${leftTranslate}px`;
       hoverIndicator.style.opacity = "1"; // Fade-in when hovered
       hoverIndicator.style.visibility = "visible"; // Make visible during hover
@@ -83,27 +89,65 @@ function resetEvents() {
 
 // Handle column click
 function handleColumnClick(colIndex) {
-  // Drop the disc in the selected column
-  const success = gameBoard.dropDisc(colIndex, currentPlayer);
+  if (isAnimating) return; // Ignore clicks during animation
 
-  if (success) {
-    // Update the board UI
-    updateBoardUI();
+  // Find the first empty row in the column
+  const rowIndex = gameBoard.getFirstEmptyRow(colIndex);
+  if (rowIndex === -1) return; // If the column is full, do nothing
 
-    // Check for a winner
-    const winner = gameBoard.checkWinner();
-    if (winner) {
-      showWinner(winner);
-      return; // Stop further execution after showing winner modal
+  isAnimating = true; // Set animation flag
+
+  // Create a temporary disc for the animation
+  const disc = document.createElement("div");
+  disc.classList.add("animated-disc");
+  disc.style.backgroundColor = currentPlayer === "player1" ? "red" : "yellow";
+  disc.style.left = `${gameBoard.getLeftStartingPointOfCoin(
+    GAP_SIZE,
+    colIndex,
+    CELL_SIZE
+  )}px`;
+  disc.style.top = "0px";
+
+  // Add the disc to the board container
+  board.appendChild(disc);
+
+  // Animate the disc to the target row
+  const targetTop = rowIndex * (CELL_SIZE + GAP_SIZE);
+  setTimeout(() => {
+    disc.style.top = `${targetTop}px`;
+  }, 0);
+
+  // After the animation ends, update the board state
+  setTimeout(() => {
+    if (board.contains(disc)) {
+      board.removeChild(disc); // Remove the temporary disc if it exists
     }
 
-    // Switch to the next player
-    currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
+    // Drop the disc in the game logic
+    const success = gameBoard.dropDisc(colIndex, currentPlayer);
 
-    // Update the hover indicator to reflect the new player
-    hoverIndicator.style.backgroundColor =
-      currentPlayer === "player1" ? "red" : "yellow";
-  }
+    if (success) {
+      // Update the board UI
+      updateBoardUI();
+
+      // Check for a winner
+      const winner = gameBoard.checkWinner();
+      if (winner) {
+        showWinner(winner);
+        isAnimating = false; // Reset animation flag after showing the winner modal
+        return; // Stop further execution after showing winner modal
+      }
+
+      // Switch to the next player
+      currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
+
+      // Update the hover indicator to reflect the new player
+      hoverIndicator.style.backgroundColor =
+        currentPlayer === "player1" ? "red" : "yellow";
+    }
+
+    isAnimating = false; // Reset animation flag
+  }, 500); // Match the animation duration
 }
 
 // Show winner with confetti and modal
