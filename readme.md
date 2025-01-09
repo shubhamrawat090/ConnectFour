@@ -35,7 +35,14 @@ Live Demo: [Connect 4 Clone](https://shubhamrawat090.github.io/ConnectFour/)
 
 ## 📸 Screenshot
 
-_(Include a screenshot of your game here once completed.)_
+**1. In-Game View**  
+![In-Game Screenshot](screenshots/InGame.png)
+
+**2. Player 1's Turn**  
+![Player 1 Turn Screenshot](screenshots/Player1Turn.png)
+
+**3. Winner Screen**  
+![Winner Screen Screenshot](screenshots/WinnerScreen.png)
 
 ---
 
