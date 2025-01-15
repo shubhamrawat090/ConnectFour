@@ -11,7 +11,6 @@
 :root {
   --cell-size: 60px; /* Size of each cell (initial value, will be overwritten in JS) */
   --gap-size: 10px; /* Gap between cells (initial value, will be overwritten in JS) */
-  --board-padding: 10px; /* Padding around the board */
   --hover-indicator-color: red; /* Color of the hover indicator */
   --cell-color: #4a4a4a; /* Inner cell background */
   --cell-border-color: #333; /* Border color of cells */
@@ -20,6 +19,8 @@
   --text-color: white; /* Text color */
   --body-bg-color: #2c2c54; /* Background color of the body */
   --animation-duration: 500ms; /* Animation duration, dynamically set via JS */
+  --col-count: 5;
+  --row-count: 5;
 }
 
 body {
@@ -60,9 +61,11 @@ h1 {
 /* Board Styles */
 #board {
   display: grid;
+  grid-template-columns: repeat(var(--col-count), var(--cell-size));
+  grid-template-rows: repeat(var(--row-count), var(--cell-size));
   gap: var(--gap-size);
   background-color: var(--board-bg-color);
-  padding: var(--board-padding);
+  padding: var(--gap-size);
   border-radius: var(--board-border-radius);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
